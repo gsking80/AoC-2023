@@ -8,8 +8,8 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>16</source>
-          <target>16</target>
+          <source>17</source>
+          <target>17</target>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
         <version>3.8.1</version>
@@ -17,6 +17,11 @@
     </plugins>
   </build>
   <dependencies>
+    <dependency>
+      <artifactId>commons-lang3</artifactId>
+      <groupId>org.apache.commons</groupId>
+      <version>3.13.0</version>
+    </dependency>
     <dependency>
       <artifactId>assertj-core</artifactId>
       <groupId>org.assertj</groupId>
@@ -27,12 +32,7 @@
       <artifactId>junit</artifactId>
       <groupId>junit</groupId>
       <scope>test</scope>
-      <version>4.13.2</version>
-    </dependency>
-    <dependency>
-      <artifactId>commons-lang3</artifactId>
-      <groupId>org.apache.commons</groupId>
-      <version>3.12.0</version>
+      <version>4.13.1</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
