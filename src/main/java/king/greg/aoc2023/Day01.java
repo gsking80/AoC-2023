@@ -70,12 +70,12 @@ public class Day01 {
         var findFirst = line.indexOf(digit);
         if (findFirst != -1 && findFirst < firstIndex) {
           firstIndex = findFirst;
-          tens = numbers.get(digit);
+          tens = entry.getValue();
         }
         var findLast = line.lastIndexOf(digit);
         if(findLast != -1 && findLast > lastIndex) {
           lastIndex = findLast;
-          ones = numbers.get(digit);
+          ones = entry.getValue();
         }
       }
       value += (tens * 10) + ones;
