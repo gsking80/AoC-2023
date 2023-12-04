@@ -39,7 +39,7 @@ public class Day04 {
   private long getWinnerCount(final String scratcher) {
     final var parts = scratcher.split(": | +\\| +");
     final var winningNumbers = Arrays.asList(parts[1].split(" +"));
-    final var myNumbers = Arrays.asList(parts[2].split(" +"));
-    return winningNumbers.stream().filter(myNumbers::contains).count();
+    final var myNumbers = parts[2].split(" +");
+    return Arrays.stream(myNumbers).filter(winningNumbers::contains).count();
   }
 }
