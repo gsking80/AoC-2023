@@ -22,7 +22,7 @@ public class Day03 {
       for (var x = 0; x < currentLine.length; x++) {
         var currentCharacter = currentLine[x];
         if (currentCharacter >= '0' && currentCharacter <= '9') {
-          adjacencies.addAll(neighbors(x,y));
+          adjacencies.addAll(neighbors(x, y));
           currentNumber = (currentNumber * 10) + (currentCharacter - '0');
         } else {
           if (currentNumber > 0) {
@@ -31,10 +31,10 @@ public class Day03 {
             adjacencies = new HashSet<>();
           }
           if (currentCharacter == '*') {
-            gears.add(new Point(x,y));
+            gears.add(new Point(x, y));
           }
           if (currentCharacter != '.') {
-            symbols.add(new Point(x,y));
+            symbols.add(new Point(x, y));
           }
         }
       }
@@ -62,7 +62,7 @@ public class Day03 {
       for (final var part : parts) {
         if (part.getRight().contains(gear)) {
           count++;
-          if(count > 2) {
+          if (count > 2) {
             break;
           }
           ratio *= part.getLeft();
@@ -77,12 +77,11 @@ public class Day03 {
 
   private Set<Point> neighbors(final int x, final int y) {
     final Set<Point> neighbors = new HashSet<>();
-    for (var currX = x -1; currX <= x + 1; currX++) {
+    for (var currX = x - 1; currX <= x + 1; currX++) {
       for (var currY = y - 1; currY <= y + 1; currY++) {
-        neighbors.add(new Point(currX,currY));
+        neighbors.add(new Point(currX, currY));
       }
     }
     return neighbors;
   }
-
 }

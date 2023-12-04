@@ -7,6 +7,7 @@ import java.util.Map;
 public class Day01 {
 
   private static final Map<String, Integer> numbers = new HashMap<>();
+
   static {
     numbers.put("1", 1);
     numbers.put("2", 2);
@@ -37,7 +38,7 @@ public class Day01 {
   public long calibrate() {
     var value = 0;
 
-    for (final var line: lines){
+    for (final var line : lines) {
       for (var i = 0; i < line.length(); i++) {
         final var character = line.charAt(i);
         if (character >= '0' && character <= '9') {
@@ -60,12 +61,12 @@ public class Day01 {
   public long calibrateWithWords() {
     var value = 0;
 
-    for (final var line: lines) {
+    for (final var line : lines) {
       var firstIndex = line.length();
       var lastIndex = -1;
       var tens = 0;
       var ones = 0;
-      for(final var entry : numbers.entrySet()) {
+      for (final var entry : numbers.entrySet()) {
         final var digit = entry.getKey();
         var findFirst = line.indexOf(digit);
         if (findFirst != -1 && findFirst < firstIndex) {
@@ -73,7 +74,7 @@ public class Day01 {
           tens = entry.getValue();
         }
         var findLast = line.lastIndexOf(digit);
-        if(findLast != -1 && findLast > lastIndex) {
+        if (findLast != -1 && findLast > lastIndex) {
           lastIndex = findLast;
           ones = entry.getValue();
         }
@@ -83,5 +84,4 @@ public class Day01 {
 
     return value;
   }
-
 }

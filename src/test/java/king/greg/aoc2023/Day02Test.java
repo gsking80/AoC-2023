@@ -16,7 +16,7 @@ class Day02Test {
         Objects.requireNonNull(getClass().getClassLoader().getResource("Day02/sample1.txt"))
             .toURI()));
     final Day02 day02 = new Day02(lines);
-    Assertions.assertThat(day02.possibleGamesScore(12,13,14)).isEqualTo(8);
+    Assertions.assertThat(day02.possibleGamesScore(12, 13, 14)).isEqualTo(8);
   }
 
   @Test
@@ -25,7 +25,7 @@ class Day02Test {
         Objects.requireNonNull(getClass().getClassLoader().getResource("Day02/input.txt"))
             .toURI()));
     final Day02 day02 = new Day02(lines);
-    Assertions.assertThat(day02.possibleGamesScore(12,13,14)).isEqualTo(2265);
+    Assertions.assertThat(day02.possibleGamesScore(12, 13, 14)).isEqualTo(2265);
   }
 
   @Test
@@ -45,5 +45,4 @@ class Day02Test {
     final Day02 day02 = new Day02(lines);
     Assertions.assertThat(day02.powerSum()).isEqualTo(64097);
   }
-
 }

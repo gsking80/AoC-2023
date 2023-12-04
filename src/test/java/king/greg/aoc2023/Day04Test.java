@@ -45,5 +45,4 @@ class Day04Test {
     final Day04 day04 = new Day04(lines);
     Assertions.assertThat(day04.totalCards()).isEqualTo(5744979);
   }
-
 }

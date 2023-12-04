@@ -36,9 +36,9 @@ public class Day02 {
 
   private int[] colorMax(final String[] game) {
     final int[] colorMax = new int[3];
-    for (var i = 2; i < game.length; i+=2){
+    for (var i = 2; i < game.length; i += 2) {
       final int count = Integer.parseInt(game[i]);
-      switch (game[i+1]) {
+      switch (game[i + 1]) {
         case "red" -> {
           if (count > colorMax[0]) {
             colorMax[0] = count;
@@ -54,10 +54,9 @@ public class Day02 {
             colorMax[2] = count;
           }
         }
-        default -> throw new IllegalArgumentException(game[i+1]);
+        default -> throw new IllegalArgumentException(game[i + 1]);
       }
     }
     return colorMax;
   }
-
 }
