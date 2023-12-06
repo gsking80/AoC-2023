@@ -32,11 +32,7 @@ public class Day06 {
   }
 
   private long waysToWin(final long time, final long distance) {
-    for (long i = 1; i < time; i++) {
-      if (i * (time - i) > distance) {
-        return time + 1 - (i * 2);
-      }
-    }
-    return 0;
+    var x = Math.ceil((time - Math.sqrt((time * time) - (double) (4 * (distance + 1)))) / 2);
+    return (long) (time + 1 - (x * 2));
   }
 }
