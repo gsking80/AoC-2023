@@ -9,12 +9,43 @@ import java.util.Map;
 
 public class Day12 {
 
+  private static final char DAMAGED_SPRING = '#';
+  private static final char OPERATIONAL_SPRING = '.';
   private final List<String> lines;
   private final Map<Point, Long> memo;
 
   Day12(final List<String> lines) {
     this.lines = lines;
     memo = new HashMap<>();
+  }
+
+  private static boolean rightBoundaryValid(final char[] springs, final int springIndex,
+      final int damageLength) {
+    return !(springIndex + damageLength < springs.length
+        && springs[springIndex + damageLength] == DAMAGED_SPRING);
+  }
+
+  private static boolean interiorSequenceValid(final char[] springs, final int springIndex,
+      final int damageLength) {
+    for (int i = 0; i < damageLength; i++) {
+      if (springs[springIndex + i] == OPERATIONAL_SPRING) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private static boolean endValid(final char[] springs, final int springIndex,
+      final List<Integer> damages,
+      final int damageIndex) {
+    if (damageIndex == damages.size() - 1) {
+      for (int i = springIndex + damages.get(damageIndex) + 1; i < springs.length; i++) {
+        if (springs[i] == DAMAGED_SPRING) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   public long totalArrangements(final int folds) {
@@ -38,10 +69,10 @@ public class Day12 {
     springsBuilder.append(parts[0]);
     damages.addAll(foldedDamages);
 
-    return countArrangements(springsBuilder.toString(), 0, damages, 0);
+    return countArrangements(springsBuilder.toString().toCharArray(), 0, damages, 0);
   }
 
-  private long countArrangements(final String springs, final int springIndex,
+  private long countArrangements(final char[] springs, final int springIndex,
       final List<Integer> damages, final int damageIndex) {
     if (damageIndex == damages.size()) {
       return 1;
@@ -52,50 +83,22 @@ public class Day12 {
     }
 
     long count = 0;
-    for (int i = springIndex; i <= springs.length() - damages.get(damageIndex); i++) {
+    final int damageLength = damages.get(damageIndex);
+    for (int i = springIndex; i <= springs.length - damageLength; i++) {
 
-      if (rightBoundaryValid(springs, i, damages, damageIndex) &&
-          interiorSequenceValid(springs, i, damages, damageIndex) &&
+      if (rightBoundaryValid(springs, i, damageLength) &&
+          interiorSequenceValid(springs, i, damageLength) &&
           endValid(springs, i, damages, damageIndex)) {
         count += countArrangements(springs, i + damages.get(damageIndex) + 1, damages,
             damageIndex + 1);
       }
 
-      if (springs.charAt(i) == '#') { // left side is locked
+      if (springs[i] == DAMAGED_SPRING) { // left side is locked
         break;
       }
     }
 
     memo.put(new Point(springIndex, damageIndex), count);
-
     return count;
-  }
-
-  private boolean rightBoundaryValid(final String springs, final int springIndex,
-      final List<Integer> damages, final int damageIndex) {
-    return !(springIndex + damages.get(damageIndex) < springs.length()
-        && springs.charAt(springIndex + damages.get(damageIndex)) == '#');
-  }
-
-  private boolean interiorSequenceValid(final String springs, final int springIndex,
-      final List<Integer> damages, final int damageIndex) {
-    for (int i = 0; i < damages.get(damageIndex); i++) {
-      if (springs.charAt(springIndex + i) == '.') {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  private boolean endValid(final String springs, final int springIndex, final List<Integer> damages,
-      final int damageIndex) {
-    if (damageIndex == damages.size() - 1) {
-      for (int i = springIndex + damages.get(damageIndex) + 1; i < springs.length(); i++) {
-        if (springs.charAt(i) == '#') {
-          return false;
-        }
-      }
-    }
-    return true;
   }
 }
