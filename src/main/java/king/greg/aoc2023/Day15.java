@@ -11,9 +11,6 @@ import org.apache.commons.lang3.tuple.Pair;
 public class Day15 {
 
   private final List<String> steps;
-  private final List<Pair<List<String>, Map<String, Integer>>> boxes;
-
-  private final Pattern pattern = Pattern.compile("(\\w+)([-=])(\\w?)");
 
   Day15(final List<String> lines) {
     this.steps = new ArrayList<>();
@@ -21,7 +18,6 @@ public class Day15 {
       final var parts = line.split(",");
       this.steps.addAll(Arrays.asList(parts));
     }
-    this.boxes = new ArrayList<>();
   }
 
   final int hashSum() {
@@ -33,7 +29,8 @@ public class Day15 {
   }
 
   final int focusingPower() {
-    initializeBoxes();
+    final List<Pair<List<String>, Map<String, Integer>>> boxes = initializeBoxes();
+    final Pattern pattern = Pattern.compile("(\\w+)([-=])(\\w?)");
     for (final var step : steps) {
       final var matches = pattern.matcher(step);
       if (matches.matches()) {
@@ -53,10 +50,10 @@ public class Day15 {
         throw new IllegalArgumentException(step);
       }
     }
-    return boxScore();
+    return boxScore(boxes);
   }
 
-  private int boxScore() {
+  private int boxScore(final List<Pair<List<String>, Map<String, Integer>>> boxes) {
     int boxScore = 0;
     for (int i = 0; i < 256; i++) {
       final var box = boxes.get(i);
@@ -67,12 +64,14 @@ public class Day15 {
     return boxScore;
   }
 
-  private void initializeBoxes() {
+  private List<Pair<List<String>, Map<String, Integer>>> initializeBoxes() {
+    final List<Pair<List<String>, Map<String, Integer>>> boxes = new ArrayList<>();
     for (int i = 0; i < 256; i++) {
       final List<String> boxContents = new ArrayList<>();
       final Map<String, Integer> boxMap = new HashMap<>();
       boxes.add(Pair.of(boxContents, boxMap));
     }
+    return boxes;
   }
 
   private int hash(final String input) {
