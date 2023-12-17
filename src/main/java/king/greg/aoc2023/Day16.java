@@ -139,7 +139,9 @@ public class Day16 {
           }
         }
       }
-      default -> {throw new UnsupportedOperationException(String.valueOf(currentTile));}
+      default -> {
+        throw new UnsupportedOperationException(String.valueOf(currentTile));
+      }
     }
 
     return nextLocations;
