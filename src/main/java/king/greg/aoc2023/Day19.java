@@ -79,7 +79,11 @@ public class Day19 {
     }
     final var workflow = workflows.get(workflowName);
     final List<Map<String, Pair<Integer, Integer>>> validPartRanges = new ArrayList<>();
+    boolean remainderValid = true;
     for (final var step : workflow) {
+      if (!remainderValid) {
+        return validPartRanges;
+      }
       if (step.size() == 1) {
         validPartRanges.addAll(validPartRanges(step.get(0), partRanges));
         return validPartRanges;
@@ -95,7 +99,7 @@ public class Day19 {
           if (comparison.equals("<")) {
             if (range.getRight() < testValue) {
               testRanges.put(entry.getKey(), Pair.of(range.getLeft(), range.getRight()));
-              entry.setValue(Pair.of(0, 0));
+              remainderValid = false;
             } else if (range.getLeft() >= testValue) {
               break;
             } else {
@@ -105,7 +109,7 @@ public class Day19 {
           } else {
             if (range.getLeft() > testValue) {
               testRanges.put(entry.getKey(), Pair.of(range.getLeft(), range.getRight()));
-              entry.setValue(Pair.of(0, 0));
+              remainderValid = false;
             } else if (range.getRight() <= testValue) {
               break;
             } else {
