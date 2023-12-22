@@ -72,11 +72,11 @@ public class Day21 {
         for (final var location : reachableEdge) {
           nextReachable.addAll(wrappedValidSteps(location));
         }
-        nextReachable.removeAll(possibleSteps.get((int)(steps % 2)));
-        possibleSteps.get((int)(steps % 2)).addAll(nextReachable);
+        nextReachable.removeAll(possibleSteps.get((int) (steps % 2)));
+        possibleSteps.get((int) (steps % 2)).addAll(nextReachable);
         reachableEdge = nextReachable;
       }
-      reachableCounts[n] = (possibleSteps.get((int)(steps % 2)).size());
+      reachableCounts[n] = (possibleSteps.get((int) (steps % 2)).size());
     }
 
     // Hooray for math
