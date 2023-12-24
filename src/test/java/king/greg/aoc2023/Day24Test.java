@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
 import org.assertj.core.api.Assertions;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class Day24Test {
@@ -30,7 +30,7 @@ class Day24Test {
         .isEqualTo(31208);
   }
 
-  @Ignore
+  @Disabled
   @Test
   void testSample2() throws URISyntaxException, IOException {
     final var lines = Files.readAllLines(Paths.get(
