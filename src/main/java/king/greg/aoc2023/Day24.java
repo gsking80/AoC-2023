@@ -65,9 +65,12 @@ public class Day24 {
       var ydi = hailstones[i][4];
       var zdi = hailstones[i][5];
       mathematicaEquations.append('t').append(i).append(" >= 0, ");
-      mathematicaEquations.append(xi).append(" + ").append(xdi).append('t').append(i).append(" == x + xd ").append('t').append(i).append(", ");
-      mathematicaEquations.append(yi).append(" + ").append(ydi).append('t').append(i).append(" == y + yd ").append('t').append(i).append(", ");
-      mathematicaEquations.append(zi).append(" + ").append(zdi).append('t').append(i).append(" == z + zd ").append('t').append(i);
+      mathematicaEquations.append(xi).append(" + ").append(xdi).append('t').append(i)
+          .append(" == x + xd ").append('t').append(i).append(", ");
+      mathematicaEquations.append(yi).append(" + ").append(ydi).append('t').append(i)
+          .append(" == y + yd ").append('t').append(i).append(", ");
+      mathematicaEquations.append(zi).append(" + ").append(zdi).append('t').append(i)
+          .append(" == z + zd ").append('t').append(i);
       if (i < 2) {
         mathematicaEquations.append(", ");
       }

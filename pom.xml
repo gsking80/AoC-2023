@@ -28,6 +28,11 @@
       <version>4.4</version>
     </dependency>
     <dependency>
+      <artifactId>jgrapht-core</artifactId>
+      <groupId>org.jgrapht</groupId>
+      <version>1.5.2</version>
+    </dependency>
+    <dependency>
       <artifactId>assertj-core</artifactId>
       <groupId>org.assertj</groupId>
       <scope>test</scope>
