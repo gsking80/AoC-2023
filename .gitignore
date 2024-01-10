@@ -1,2 +1,3 @@
 /advent-2023.iml
 /target/
+/src/test/resources/*/input.txt
